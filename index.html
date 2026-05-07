@@ -2,27 +2,164 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Design Lab Guides</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background: #f6f7f9;
+      color: #111827;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+
+    .hero {
+      margin-bottom: 40px;
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      letter-spacing: -0.04em;
+    }
+
+    .desc {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #4b5563;
+    }
+
+    section {
+      margin-top: 36px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      display: block;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #ffffff;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card:hover {
+      border-color: #2563eb;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .summary {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
 </head>
 <body>
-  <h1>AI Design Lab Guides</h1>
+  <main class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Hyundai E&C AI Design Lab</div>
+      <h1>AI Use Case Guide Portal</h1>
+      <p class="desc">
+        전사 공통 활용 가이드와 부서·업무 특화 AI 활용 가이드를 모아 제공하는 페이지입니다.
+      </p>
+    </div>
 
-  <h2>전사공통</h2>
-  <ul>
-    <li>
-      <a href="/common/copilot-research-word/">
-        Copilot Research + Word 활용 가이드
-      </a>
-    </li>
-  </ul>
+    <section>
+      <h2>전사 공통</h2>
+      <div class="grid">
+        <a class="card" href="/enterprise/copilot-basic-free/">
+          <span class="badge">Enterprise</span>
+          <div class="title">Copilot 무료 계정 기본 가이드</div>
+          <p class="summary">무료 계정 기준 Copilot 기본 사용법과 주요 활용 흐름을 안내합니다.</p>
+        </a>
 
-  <h2>부서특화</h2>
-  <ul>
-    <li>
-      <a href="/specialized/ppt-editor-agent/">
-        PPT 수정 Copilot 에이전트 구축 가이드
-      </a>
-    </li>
-  </ul>
+        <a class="card" href="/enterprise/copilot-basic-paid/">
+          <span class="badge">Enterprise</span>
+          <div class="title">Copilot 유료 계정 기본 가이드</div>
+          <p class="summary">유료 계정 기준 Office 앱 내 Copilot 활용 방법을 안내합니다.</p>
+        </a>
+
+        <a class="card" href="/enterprise/copilot-pages-work-together/">
+          <span class="badge">Enterprise</span>
+          <div class="title">Copilot Pages 공동 작업 가이드</div>
+          <p class="summary">Copilot Pages를 활용해 산출물을 팀원과 함께 정리하고 수정하는 방법을 안내합니다.</p>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>부서·업무 특화</h2>
+      <div class="grid">
+        <a class="card" href="/specialized/copilot-research-word/">
+          <span class="badge">Specialized</span>
+          <div class="title">시장조사 Word 활용 가이드</div>
+          <p class="summary">Copilot Research와 Word를 활용해 시장조사 자료를 정리하고 문서화하는 과정을 안내합니다.</p>
+        </a>
+
+        <a class="card" href="/specialized/ppt-editor-agent/">
+          <span class="badge">Specialized</span>
+          <div class="title">PPT 수정 Copilot 에이전트 구축 가이드</div>
+          <p class="summary">기존 PPT 양식 기준으로 회의자료·보고 장표를 빠르게 수정하는 에이전트 구축 과정을 안내합니다.</p>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      본 문서는 AI 활용 실무 가이드 입니다. 실제 UI/기능은 조직 정책 및 프로그램 버전에 따라 달라질 수 있습니다.
+    </footer>
+  </main>
 </body>
 </html>
