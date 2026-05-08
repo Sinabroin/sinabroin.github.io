@@ -18,6 +18,31 @@
       padding: 56px 24px;
     }
 
+    .top-action {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 28px;
+    }
+
+    .playground-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      color: #2563eb;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .playground-link:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
     .hero {
       margin-bottom: 40px;
     }
@@ -41,6 +66,13 @@
       font-size: 16px;
       line-height: 1.7;
       color: #4b5563;
+    }
+
+    .notice {
+      margin-top: 16px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #6b7280;
     }
 
     section {
@@ -105,15 +137,48 @@
       font-size: 13px;
       color: #6b7280;
     }
+
+    @media (max-width: 720px) {
+      .wrap {
+        padding: 36px 18px;
+      }
+
+      .top-action {
+        justify-content: stretch;
+        margin-bottom: 24px;
+      }
+
+      .playground-link {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
+    <div class="top-action">
+      <a
+        class="playground-link"
+        href="https://o365hdec.sharepoint.com/sites/Playground"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        PlayGround 바로가기 ↗
+      </a>
+    </div>
+
     <div class="hero">
       <div class="eyebrow">Hyundai E&C AI Design Lab</div>
       <h1>AI Use Case Guide Portal</h1>
       <p class="desc">
         전사 공통 활용 가이드와 부서·업무 특화 AI 활용 가이드를 모아 제공하는 페이지입니다.
+      </p>
+      <p class="notice">
+        PlayGround는 사내 Microsoft 365 / SharePoint 권한이 있는 사용자만 접속할 수 있습니다.
       </p>
     </div>
 
