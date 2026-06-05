@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Copilot으로 대외 공문 초안 자동 작성하기</title><style>
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap');
+:root{--primary:#003087;--primary-deep:#0b2a63;--primary-light:#eef4fc;--warning:#fff6e8;--warning-line:#f2ddb0;--ok:#edf8ef;--ok-line:#cde4d3;--bg:#fff;--card-bg:#fff;--text:#334155;--text-light:#64748b;--ink:#0f172a;--border:#e5e9f0;--border-strong:#d7dfea;--navy:#002C5F;--brand-blue:#00AAD2}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}a{color:inherit}.wrap{max-width:1240px;margin:0 auto;padding:18px 20px 40px;width:calc(100% - 40px)}.site-header{position:sticky;top:0;z-index:120;height:66px;background:rgba(255,255,255,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}.header-container{width:min(calc(100% - 40px),1240px);height:100%;margin:0 auto}.header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px;color:var(--navy);text-decoration:none;min-width:0}.brand img{width:34px;height:34px;object-fit:contain;display:block;flex:0 0 auto}.brand-text{display:flex;flex-direction:column;line-height:1.16;min-width:0}.brand-text small{font-size:11px;font-weight:700;color:var(--text-light)}.brand-text strong{font-size:15px;font-weight:900;color:var(--navy)}.page-title{font-size:14px;font-weight:800;color:var(--navy);white-space:nowrap}.topbar{position:sticky;top:76px;z-index:90;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;margin-bottom:18px;box-shadow:none}.topbar-in{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding:8px 10px;scrollbar-width:none}.topbar-in::-webkit-scrollbar{display:none}.top-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;background:none;border:1px solid transparent;width:auto;min-width:82px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--text-light);border-radius:8px;white-space:nowrap;flex:0 0 auto}.top-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.top-btn.primary:hover{background:var(--primary-deep)}.top-btn:hover{color:var(--primary);background:var(--primary-light)}.pdf-link{display:inline-flex;align-items:center;gap:5px;color:var(--text-light);text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);margin-left:auto;font-weight:700}.pdf-link:hover{color:var(--primary);background:var(--primary-light)}.hero{background:#fff;color:var(--ink);padding:28px 24px;border-radius:18px;margin-bottom:22px;border:1px solid var(--border)}.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center}.meta-tag{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:-.01em;border:1px solid transparent;line-height:1}.meta-tag.category{background:#f0f4ff;color:#1e3a8a;border-color:#c7d7f9}.meta-tag.tool{background:#fff7ed;color:#9a3412;border-color:#fed7aa}.meta-tag.common{background:#fff;color:var(--navy);border-color:var(--border-strong);box-shadow:0 1px 0 rgba(15,23,42,.02)}.meta-tag .lbl{font-weight:500;color:inherit;opacity:.65;margin-right:2px}.hero h1{font-size:28px;font-weight:900;margin-bottom:10px;letter-spacing:-.03em;color:var(--ink);line-height:1.3}.hero .sub{font-size:14.5px;color:var(--text-light);margin-bottom:16px;line-height:1.65;max-width:920px}.hero-cta{display:flex;flex-wrap:wrap;gap:8px}.cta-primary{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;text-decoration:none;padding:11px 16px;border-radius:10px;font-size:14px;font-weight:800;letter-spacing:-.01em}.cta-primary:hover{background:var(--primary-deep)}.section{margin-bottom:36px}.topbar,.hero,.section{width:100%;max-width:1240px;margin-left:auto;margin-right:auto}.section-title{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;color:var(--ink);margin-bottom:14px;letter-spacing:-.02em}.section-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--primary);color:#fff;border-radius:50%;font-size:13px;font-weight:800;flex-shrink:0}.steps-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}.step-3{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 14px 16px}.step-3 .n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--primary-light);color:var(--primary);border-radius:50%;font-size:12px;font-weight:900;margin-bottom:8px}.step-3 .t{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:4px;line-height:1.4}.step-3 .d{font-size:13px;color:var(--text-light);line-height:1.55}.flow-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px;align-items:start}.flow-block{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px}.flow-pair .flow-block{margin-top:0;height:100%}.flow-title{font-size:15px;font-weight:900;color:var(--ink);margin:0 0 4px;letter-spacing:-.01em}.flow-desc{font-size:13px;color:var(--text-light);line-height:1.65;margin-bottom:8px}.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}.shot-grid.single{grid-template-columns:1fr}.screenshot{background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px;margin:10px 0 0}.screenshot img{width:100%;display:block;border-radius:8px;border:1px solid #e5e9f0;background:#f8fafc}.screenshot .cap{font-family:'Noto Sans KR','Malgun Gothic',sans-serif;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--primary);margin-bottom:6px;text-align:left;line-height:1.4;text-transform:uppercase}.zoomable-image{cursor:zoom-in;transition:transform .18s ease,box-shadow .18s ease}.zoomable-image:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(15,23,42,.12)}.quick-4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%;margin-top:12px}.quick-card{background:linear-gradient(180deg,#fff 0%,#f8fbff 100%);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(15,23,42,.03)}.quick-card .k{font-size:11px;font-weight:900;color:var(--brand-blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}.quick-card h3{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em}.quick-card .when{font-size:13px;color:var(--text-light);line-height:1.55;margin-bottom:10px}.quick-card .ex{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:'Noto Sans KR','Malgun Gothic',sans-serif;font-size:12.8px;color:#0f172a;line-height:1.6;white-space:pre-wrap}.copy-btn{display:inline-flex;align-items:center;gap:4px;background:var(--primary);color:#fff;border:none;padding:7px 12px;font-size:12.5px;font-weight:700;border-radius:8px;cursor:pointer}.copy-btn.done{background:#2d6b40}.prompt-details{margin-top:10px;border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden}.prompt-details summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;font-size:13px;font-weight:900;color:var(--ink);background:#fff}.prompt-details summary::-webkit-details-marker{display:none}.prompt-details summary::after{content:'펼치기';display:inline-flex;align-items:center;justify-content:center;background:var(--primary);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:800;white-space:nowrap}.prompt-details[open] summary{border-bottom:1px solid var(--border)}.prompt-details[open] summary::after{content:'닫기';background:var(--primary-deep)}.prompt-details .prompt-copy-box{display:flex!important;flex-direction:column!important;gap:8px!important;padding:12px!important}.prompt-details .copy-btn{align-self:flex-end!important}.faq-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;width:100%}.faq details{background:#fff;border:none;border-bottom:1px solid var(--border);border-radius:0;margin:0;overflow:hidden;width:100%}.faq details:last-child{border-bottom:none}.faq summary{padding:18px 18px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:'+';font-size:18px;color:var(--text-light);font-weight:700;flex-shrink:0}.faq details[open] summary::after{content:'−'}.faq details[open] summary{border-bottom:1px solid var(--border)}.faq .ans{padding:12px 18px 18px;font-size:13.5px;color:var(--text-light);line-height:1.65}.site-footer{margin-top:34px;background:var(--navy);color:rgba(255,255,255,.74);padding:28px 0;text-align:center;font-size:13px;line-height:1.7}.footer-container{width:min(calc(100% - 40px),1240px);margin:0 auto}.lightbox-overlay{position:fixed;inset:0;background:rgba(15,23,42,.82);display:none;align-items:center;justify-content:center;padding:28px;z-index:9999}.lightbox-overlay.open{display:flex}.lightbox-shell{position:relative;max-width:min(96vw,1400px);max-height:92vh;display:flex;flex-direction:column;align-items:center;gap:10px}.lightbox-image{max-width:100%;max-height:calc(92vh - 52px);width:auto;height:auto;border-radius:10px;box-shadow:0 18px 48px rgba(0,0,0,.35)}.lightbox-caption{font-size:12px;font-weight:800;line-height:1.4;color:#fff}.lightbox-close{position:absolute;top:-12px;right:-12px;width:36px;height:36px;border:none;border-radius:999px;background:#fff;color:#0f172a;font-size:22px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25)}@media(max-width:900px){.quick-4,.flow-pair,.shot-grid,.steps-3{grid-template-columns:1fr}}@media(max-width:720px){.wrap{padding:12px 12px 28px;width:100%;max-width:100%}.hero{padding:20px 16px;border-radius:14px}.hero h1{font-size:21px}.page-title{display:none}.topbar{top:70px}}@media print{@page{size:A4 portrait;margin:14mm 12mm 16mm}body{background:#fff!important;font-size:10pt}.site-header,.topbar,.copy-btn{display:none!important}.wrap{max-width:100%;padding:0!important;width:100%}.section{margin-bottom:8mm}.hero,.step-3,.flow-block,.quick-card,.faq-card,.screenshot{break-inside:avoid;page-break-inside:avoid}.hero h1{font-size:16pt}.steps-3{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}.site-footer{display:none!important}}
+.hero-sub-nowrap{white-space:nowrap;display:inline-block;max-width:none}
+@media(max-width:900px){.hero-sub-nowrap{white-space:normal;display:inline}}
+
+.dl-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px;background:#fff;color:var(--primary);border:1px solid var(--border-strong);padding:9px 12px;font-size:12.5px;font-weight:800;border-radius:9px;cursor:pointer}.dl-btn:hover{background:var(--primary-light)}.quick-card .prompt-details{margin-top:10px}
+</style></head><body><header class="site-header"><div class="header-container header-inner"><a class="brand" href="#top" aria-label="워크이노베이션센터 AI디자인랩"><img src="https://raw.githubusercontent.com/SinaBroMan/aidesignlab_logo/main/AI%EB%94%94%EC%9E%90%EC%9D%B8%EB%9E%A9_mark.png" alt="AI디자인랩 로고"/><span class="brand-text"><small>워크이노베이션센터</small><strong>AI디자인랩</strong></span></a><div class="page-title">AI 활용 Use-Case</div></div></header><div class="wrap"><div class="topbar"><div class="topbar-in"><a class="top-btn primary" href="#start">지금 해보기</a><a class="top-btn" href="#prompts">추천 프롬프트</a><a class="top-btn" href="#example">완성 예제</a><a class="top-btn" href="#build">만든 과정</a><a class="top-btn" href="#more">응용 아이디어</a><a class="top-btn" href="#faq">FAQ</a><a class="pdf-link" href="#" onclick="handlePrint();return false;">PDF</a></div></div><div class="hero" id="top"><div class="hero-meta"><span class="meta-tag common">활용 대상 : 현장·본사 공통</span><span class="meta-tag category"><span class="lbl">사례구분</span>작성 - 문서 초안</span><span class="meta-tag tool"><span class="lbl">활용도구</span>Copilot 에이전트</span></div><h1>Copilot으로 대외 공문 초안 자동 작성하기</h1><p class="sub">발주처·조합·감리단·협력사에 보내는 대외 공문(설계변경 협의, 공기연장 요청, 기성 제출, 자재 납품 독촉 등)의 초안을 작성하는 에이전트입니다. <strong>수신처와 핵심 내용만 입력하면</strong> 회사 표준 서식·문체에 맞춰 완성 초안을 즉시 만들어, 복사해서 기존 공문 양식에 바로 붙여 쓸 수 있습니다. 아래에는 <strong>이 에이전트를 어떻게 만들었는지</strong>와, 같은 방법으로 <strong>나만의 에이전트를 직접 만드는 법</strong>까지 함께 담았습니다.</p><div class="hero-cta"><a class="cta-primary" href="https://m365.cloud.microsoft/chat/?titleId=T_81de7df8-2bdb-79b4-9534-496e233fa7ca&source=embedded-builder" target="_blank" rel="noopener noreferrer">공문 초안 작성 에이전트 바로가기 →</a></div></div>
+
+<section class="section" id="start"><div class="section-title"><span class="section-num">1</span>지금 바로 해보기</div><div class="steps-3"><div class="step-3"><div class="n">1</div><div class="t">에이전트 접속</div><div class="d"><a href="https://m365.cloud.microsoft/chat/?titleId=T_81de7df8-2bdb-79b4-9534-496e233fa7ca&source=embedded-builder" target="_blank" rel="noopener noreferrer"><strong>공문 초안 작성 에이전트</strong></a>에 접속합니다.</div></div><div class="step-3"><div class="n">2</div><div class="t">핵심 내용 입력</div><div class="d">추천 프롬프트를 누르거나, <strong>수신처·내용·회신기한</strong>을 입력합니다. 일부만 입력해도 즉시 초안이 작성됩니다.</div></div><div class="step-3"><div class="n">3</div><div class="t">초안 복사·활용</div><div class="d">완성된 초안을 복사해 기존 공문 양식에 붙여넣고, <strong>[OOO]</strong>로 표시된 빈칸만 채우면 끝입니다.</div></div></div><div class="flow-pair"><div class="flow-block"><h3 class="flow-title">왜 만들었나요?</h3><p class="flow-desc">시공 중 지장물 발생, 설계변경, 공정 지연 등으로 발주처·조합에 협의나 승인을 요청하는 공문이 현장·본사에서 수시로 발생합니다. 그때마다 양식을 찾아 직접 작성하던 작업을 대체해, <strong>공문 한 건당 작성 시간을 기존 20~30분에서 수 분으로</strong> 줄이고 담당자·현장마다 제각각이던 문체와 서식을 일관되게 통일하기 위해 만들었습니다.</p></div><div class="flow-block"><h3 class="flow-title">무엇이 좋아지나요?</h3><p class="flow-desc">수신처(조합·감리단·협력사)에 따라 <strong>호칭과 문체가 자동으로 조정</strong>되고, 빠뜨리기 쉬운 회신기한·관련 근거·첨부 항목을 시스템이 보완 제안해 공문의 완성도를 높이고 실수를 줄입니다. 정보를 일부만 입력해도 즉시 초안을 만들고, 비어 있는 항목은 <strong>[OOO]</strong>로 표시해 채워 넣을 곳을 알려줍니다.</p></div></div></section>
+
+<section class="section" id="prompts"><div class="section-title"><span class="section-num">2</span>추천 프롬프트</div><p class="sub" style="margin:0 0 14px">에이전트의 추천 프롬프트 버튼을 누른 뒤, 각 항목 뒤에 내용만 채워 보내면 됩니다. (수신처·회신기한이 비어도 즉시 초안이 작성되고, 빈칸은 [OOO]로 표시됩니다.)</p><div class="quick-4"><article class="quick-card"><div class="k">TRY 01 · 설계변경 협의</div><h3>설계변경 협의 공문</h3><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><button class="copy-btn" type="button" data-copy-target="p1" style="align-self:flex-end">복사</button><div class="ex" id="p1" style="font-size:12.5px">설계변경 협의 공문 작성해줘. 수신처: / 내용(변경 사유·요청사항): / 회신기한: / 첨부:</div></div></article><article class="quick-card"><div class="k">TRY 02 · 공기연장 요청</div><h3>공기연장 요청 공문</h3><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><button class="copy-btn" type="button" data-copy-target="p2" style="align-self:flex-end">복사</button><div class="ex" id="p2" style="font-size:12.5px">공기연장 요청 공문 작성해줘. 수신처: / 내용(연장 사유·요청기간): / 회신기한: / 첨부:</div></div></article><article class="quick-card"><div class="k">TRY 03 · 기성 제출</div><h3>기성 제출 공문</h3><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><button class="copy-btn" type="button" data-copy-target="p3" style="align-self:flex-end">복사</button><div class="ex" id="p3" style="font-size:12.5px">기성 제출 공문 작성해줘. 수신처: / 내용(기성 회차·제출물): / 회신기한: / 첨부:</div></div></article><article class="quick-card"><div class="k">TRY 04 · 자재 납품 독촉</div><h3>자재 납품 독촉 공문</h3><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><button class="copy-btn" type="button" data-copy-target="p4" style="align-self:flex-end">복사</button><div class="ex" id="p4" style="font-size:12.5px">자재 납품 독촉 공문 작성해줘. 수신처: / 내용(품목·지연 사유): / 회신기한: / 첨부:</div></div></article></div><div class="flow-pair" style="margin-top:14px"><div class="flow-block"><h3 class="flow-title">수신처별 호칭 자동 전환</h3><p class="flow-desc">본문 전체에서 호칭이 일관되게 적용됩니다.<br>· 감리단 → <strong>귀 단</strong>의 무궁한 발전을 기원합니다.<br>· 조합 → <strong>귀 조합</strong>의 무궁한 발전을 기원합니다.<br>· 그 외(발주처·고객·협력사) → <strong>귀 사</strong>의 무궁한 발전을 기원합니다.</p></div><div class="flow-block"><h3 class="flow-title">입력 항목</h3><p class="flow-desc"><strong>핵심:</strong> 수신처 / 내용(목적+배경+요청) / 회신기한<br><strong>선택:</strong> 작성일자(없으면 오늘 자동) / 경유 / 참조 / 관련 근거(계약 조항·도면번호) / 첨부<br><span style="color:var(--text-light);font-size:13px">※ 문체·호칭·용어는 참고자료(작성 규칙·공문양식)를 기준으로 자동 적용됩니다.</span></p></div></div></section>
+
+<section class="section" id="example"><div class="section-title"><span class="section-num">3</span>완성 예제 공문</div><div class="flow-block"><h3 class="flow-title">완성 예제 — 설계변경 협의 요청 (조합)</h3><p class="flow-desc">TRY 01 입력으로 생성되는 텍스트 초안 예시입니다. 그대로 복사해 기존 공문 양식에 붙여넣고 [OOO] 빈칸만 채우면 됩니다. 실제 결과는 입력 내용에 따라 달라집니다.</p><div style="margin-top:10px;display:flex;gap:8px"><button class="copy-btn" type="button" onclick="toggleExample()" id="exBtn" style="cursor:pointer">👁 예제 공문 보기</button></div><div id="exBox" style="display:none;margin-top:10px"><div class="prompt-copy-box"><button class="copy-btn" type="button" data-copy-target="exText">복사</button><div class="ex" id="exText" style="white-space:pre-wrap;line-height:1.7">작성일자 : 2026-05-29
+
+수    신 : OO재개발조합
+참    조 : 담당자
+제    목 : 설계변경 협의 요청의 건
+
+1. 귀 조합의 무궁한 발전을 기원합니다.
+
+2. 당사에서 진행 중인 현장 공사와 관련하여, 시공 과정에서 예상치 못한 지장물이 발견되어 기존 설계 도면대로 시공이 어려운 상황이 발생하였습니다.
+
+3. 이에 설계변경(안)에 대한 검토 후 2026년 6월 10일까지 승인 여부에 대한 회신을 부탁드리며, 원활한 사업 추진을 위한 적극적인 협조를 부탁드립니다.
+
+첨  부 : 설계변경(안) 1부.  끝.
+
+현대건설 주식회사
+
+────────────────────────────
+💡 더 완성도 높은 공문을 위해 아래 정보를 추가해 보세요:
+- 참조처(담당자)
+- 관련 근거(계약 조항·도면번호 등)
+→ 위 내용을 알려주시면 바로 반영해 다시 작성해 드리겠습니다.</div></div></div></div></section>
+
+<section class="section" id="build"><div class="section-title"><span class="section-num">4</span>이렇게 만들었어요 — 제작 과정</div><p class="sub" style="margin:0 0 14px">이 공문 에이전트는 <strong>Microsoft 365 Copilot의 Agent Builder</strong>에서 코딩 없이 만들었습니다. 참고자료를 올리고 지침을 붙여넣은 뒤 게시하면 끝입니다. 같은 방법으로 누구나 자기 업무용 에이전트를 만들 수 있습니다.</p><div class="steps-3"><div class="step-3"><div class="n">1</div><div class="t">에이전트 만들기</div><div class="d">Agent Builder에서 새 에이전트를 만들고 이름·아이콘을 정합니다.</div></div><div class="step-3"><div class="n">2</div><div class="t">참고자료 + 지침 넣기</div><div class="d">작성 규칙(txt)과 실제 공문 샘플(xlsx)을 지식으로 올리고, 아래 지침을 그대로 붙여넣습니다.</div></div><div class="step-3"><div class="n">3</div><div class="t">테스트 후 게시</div><div class="d">미리보기로 공문을 요청해 결과를 확인하고, 게시해 동료에게 링크로 공유합니다.</div></div></div><div class="flow-block" style="margin-top:14px"><h3 class="flow-title">붙여넣은 지침 (전문)</h3><p class="flow-desc" style="margin-bottom:8px">Agent Builder의 ‘지침’ 칸에 그대로 붙여넣은 내용입니다. 복사해서 응용해 보세요.</p><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px"><button class="copy-btn" type="button" data-copy-target="instrText" style="align-self:flex-end">복사</button><div class="ex" id="instrText" style="white-space:pre-wrap;font-size:12.3px;line-height:1.65">[역할]
+너는 현대건설 대외 공문 초안 작성 전문 에이전트다.
+아래 두 참고자료를 반드시 확인하고 작성한다.
+· 현대건설_대외_공문_작성_규칙.txt — 문체·호칭·구조·용어 규칙
+· 공문샘플1, 공문샘플2, 공문샘플3 등 — 실제 작성된 공문 예시.
+  문서번호·수신·경유·첨부·서명부 서식과 본문 표현을 참고한다.
+
+[작동 방식]
+- 입력이 불완전해도 되묻지 않고 즉시 초안 작성
+- 빠진 항목은 [OOO]로 표시
+- 작성일자 없으면 오늘 날짜 자동 기입
+- 수치·사실·인명·날짜·금액은 절대 추측하지 않음
+
+[본문 작성 원칙 — 가장 중요]
+- 배경은 현장 실무 맥락이 느껴지도록 구체적으로 작성
+- 요청사항은 무엇을, 언제까지, 어떻게를 명확하게
+- 수신처(조합·감리단·협력사 등)에 따라 호칭·문체 자동 조정
+- 요청 항목이 여러 개면 &quot;- 아  래 -&quot; 구조 사용
+
+[출력 형식]
+작성일자 : YYYY-MM-DD
+수    신 : [수신처]
+경    유 : (있으면 기재, 없으면 생략)
+참    조 : [OOO]
+제    목 : [~의 건]
+
+1. [인사말]
+2. [배경 설명]
+3. [요청사항 + 회신기한]
+
+첨  부 : (있으면 기재, 없으면 생략)
+
+현대건설 주식회사
+---
+💡 보완 제안
+(빈 [OOO] 항목 + 추가하면 좋은 것: 관련 근거·첨부·경유·참조처 등)
+
+[금지]
+- 되묻기 금지
+- 사실·수치 추측 금지
+- 공문 외 불필요한 설명·서두 금지</div></div></div></section>
+
+<section class="section" id="more"><div class="section-title"><span class="section-num">5</span>직접 만들어 보세요 — 에이전트 아이디어</div><p class="sub" style="margin:0 0 14px">공문 외에도 반복되는 문서·정리 업무라면 같은 방식(참고자료 + 지침)으로 나만의 에이전트를 만들 수 있습니다. 각 카드의 <strong>지침은 복사</strong>해서 Agent Builder 지침 칸에 붙여넣고, <strong>참고 메모(.txt)</strong>는 내려받아 지식 자료로 올리면 됩니다.</p><div class="quick-4"><article class="quick-card"><div class="k">IDEA 01</div><h3>회의록 정리 에이전트</h3><div class="when">회의 메모를 붙여넣으면 안건·결정사항·담당자·기한으로 자동 정리</div><details class="prompt-details"><summary>지침 복사</summary><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px"><button class="copy-btn" type="button" data-copy-target="g1" style="align-self:flex-end">복사</button><div class="ex" id="g1" style="white-space:pre-wrap;font-size:12.2px;line-height:1.6">[역할]
+너는 회의록 정리 전문 에이전트다.
+붙여넣은 회의 메모·녹취를 구조화된 회의록으로 정리한다.
+
+[작동 방식]
+- 입력이 불완전해도 되묻지 않고 즉시 정리
+- 빠진 항목은 [OOO]로 표시
+- 일시가 없으면 오늘 날짜 자동 기입
+- 메모에 없는 결정·수치·담당자는 추측하지 않음
+
+[정리 원칙]
+- 안건별로 묶고, 결정사항 / 논의사항 / 보류로 구분
+- 액션 아이템은 담당자와 기한을 함께 표기
+- 잡담·중복은 제외하고 핵심만 남김
+
+[출력 형식]
+회의명 : [OOO]
+일  시 : YYYY-MM-DD
+참석자 : [OOO]
+
+■ 안건 1 — [제목]
+ · 논의 : ...
+ · 결정 : ...
+
+■ 액션 아이템
+ · [담당자] 할 일 (기한 : [날짜])
+
+[금지]
+- 사실·수치 추측 금지
+- 회의록 외 불필요한 설명 금지</div></div></details><button class="dl-btn" type="button" onclick="downloadMemo('m1')">📄 참고 메모(.txt) 다운로드</button></article><article class="quick-card"><div class="k">IDEA 02</div><h3>업무 메일 초안 에이전트</h3><div class="when">상황만 적으면 사내·대외용 격식에 맞는 회신 메일 초안 작성</div><details class="prompt-details"><summary>지침 복사</summary><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px"><button class="copy-btn" type="button" data-copy-target="g2" style="align-self:flex-end">복사</button><div class="ex" id="g2" style="white-space:pre-wrap;font-size:12.2px;line-height:1.6">[역할]
+너는 업무 메일 초안 작성 에이전트다.
+상황 설명을 받아 사내·대외용 회신/요청 메일 초안을 작성한다.
+
+[작동 방식]
+- 입력이 일부만 있어도 즉시 초안 작성, 빠진 곳은 [OOO]
+- 수신자 관계(상사·동료·고객·협력사)에 따라 격식 자동 조정
+- 사실·수치·일정은 추측하지 않음
+
+[작성 원칙]
+- 구조 : 인사 → 용건(배경) → 요청/제안 → 맺음
+- 한 메일에 한 용건, 핵심을 앞에
+- 정중하되 간결하게, 모호한 표현 지양
+
+[출력 형식]
+제목 : [핵심 요약]
+받는사람 : [OOO]
+
+[인사말]
+[본문 — 배경/용건]
+[요청 또는 제안 + 기한]
+[맺음말]
+
+💡 보완 안내 : 비어 있는 [OOO]
+
+[금지]
+- 추측·과장 금지
+- 불필요한 사과·장황한 서두 금지</div></div></details><button class="dl-btn" type="button" onclick="downloadMemo('m2')">📄 참고 메모(.txt) 다운로드</button></article><article class="quick-card"><div class="k">IDEA 03</div><h3>보고서 요약 에이전트</h3><div class="when">긴 보고서·자료를 핵심 3~5줄과 시사점으로 요약</div><details class="prompt-details"><summary>지침 복사</summary><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px"><button class="copy-btn" type="button" data-copy-target="g3" style="align-self:flex-end">복사</button><div class="ex" id="g3" style="white-space:pre-wrap;font-size:12.2px;line-height:1.6">[역할]
+너는 보고서 요약 에이전트다.
+긴 문서·자료를 핵심만 추려 요약한다.
+
+[작동 방식]
+- 원문에 있는 내용만 사용, 없는 내용 추측 금지
+- 수치·고유명사는 원문 그대로 인용
+- 불명확한 부분은 [확인 필요]로 표시
+
+[요약 원칙]
+- 핵심 결론을 맨 앞에
+- 근거·배경은 3~5줄로 압축
+- 시사점 / 다음 할 일을 별도로 제시
+
+[출력 형식]
+■ 한 줄 요약
+■ 핵심 내용 (3~5개)
+ · ...
+■ 시사점 / 제언
+ · ...
+
+[금지]
+- 원문에 없는 해석·추측 금지
+- 과도한 미사여구 금지</div></div></details><button class="dl-btn" type="button" onclick="downloadMemo('m3')">📄 참고 메모(.txt) 다운로드</button></article><article class="quick-card"><div class="k">IDEA 04</div><h3>점검 체크리스트 에이전트</h3><div class="when">공종·작업만 입력하면 안전·품질 점검 항목을 표준 양식으로 생성</div><details class="prompt-details"><summary>지침 복사</summary><div class="prompt-copy-box" style="display:flex;flex-direction:column;gap:8px"><button class="copy-btn" type="button" data-copy-target="g4" style="align-self:flex-end">복사</button><div class="ex" id="g4" style="white-space:pre-wrap;font-size:12.2px;line-height:1.6">[역할]
+너는 현장 점검 체크리스트 작성 에이전트다.
+공종·작업을 입력받아 안전·품질 점검 항목을 표준 양식으로 생성한다.
+
+[작동 방식]
+- 공종/작업만 입력해도 즉시 체크리스트 생성
+- 현장 고유 조건이 불명확하면 [OOO]로 표시
+- 임의의 수치 기준은 추측하지 않음
+
+[작성 원칙]
+- 안전점검 / 품질점검 구분
+- 항목은 &#x27;확인 대상 + 판정 기준&#x27; 형태
+- 관련 기준·법규가 있으면 근거 명시
+
+[출력 형식]
+공종/작업 : [OOO]
+점검일 : YYYY-MM-DD
+
+[안전 점검]
+□ 항목 — 기준 / 근거
+[품질 점검]
+□ 항목 — 기준 / 근거
+
+[비고/특이사항]
+
+[금지]
+- 근거 없는 수치 기준 추측 금지
+- 체크리스트 외 설명 최소화</div></div></details><button class="dl-btn" type="button" onclick="downloadMemo('m4')">📄 참고 메모(.txt) 다운로드</button></article></div><div class="flow-block" style="margin-top:14px"><h3 class="flow-title">만들 때 공통 팁</h3><p class="flow-desc">① <strong>참고자료</strong>는 ‘규칙(어떻게)’과 ‘샘플(서식)’을 함께 넣을수록 결과가 실제와 가까워집니다.<br>② <strong>지침</strong>에는 역할·작동방식·출력형식·금지사항을 구분해 적으면 결과가 일정해집니다.<br>③ 비어 있는 값은 지어내지 말고 <strong>[OOO]</strong>로 두게 해 사실 오류를 막습니다.</p></div></section>
+
+<section class="section" id="faq"><div class="section-title"><span class="section-num">6</span>FAQ</div><div class="faq-card"><div class="faq"><details><summary>이 에이전트를 직접 만들려면 무엇이 필요한가요?</summary><div class="ans">Microsoft 365 Copilot의 Agent Builder 사용 권한, 참고자료(작성 규칙·공문 샘플), 그리고 지침이면 됩니다. 코딩은 필요 없으며, 위 “제작 과정” 섹션의 3단계를 그대로 따라 하면 됩니다.</div></details><details><summary>참고자료(규칙·샘플)는 어떻게 넣나요?</summary><div class="ans">Agent Builder의 지식/파일 추가 기능에서 규칙(txt)과 공문 샘플(xlsx)을 업로드하면 됩니다. 에이전트가 작성할 때 이 자료의 문체·서식을 참고합니다.</div></details><details><summary>정보를 일부만 입력해도 되나요?</summary><div class="ans">네. 되묻지 않고 입력된 내용만으로 즉시 초안을 작성합니다. 비어 있는 항목은 [OOO]로 표시되며, 초안 끝에 "추가하면 더 좋은 항목(관련 근거·첨부·참조처 등)"을 별도로 안내해 드립니다.</div></details><details><summary>출력은 어떤 형태로 나오나요?</summary><div class="ans">작성일자·수신·경유·참조·제목과 번호로 구분된 본문(인사말·배경·요청+회신기한), 첨부, 서명 순서의 텍스트 초안으로 나옵니다. 복사해서 기존 공문 양식(한글·워드 등)에 그대로 붙여넣어 사용하면 됩니다.</div></details><details><summary>수신처에 따라 문체가 달라지나요?</summary><div class="ans">네. 수신처 유형에 따라 호칭이 자동으로 전환됩니다. 감리단은 "귀 단", 조합은 "귀 조합", 그 외(발주처·고객·협력사)는 "귀 사"로 본문 전체에서 일관되게 사용하며, 종결어미는 ~니다/~드립니다/~바랍니다로 통일됩니다.</div></details><details><summary>없는 사실이나 수치를 임의로 만들어내지는 않나요?</summary><div class="ans">아니요. 입력되지 않은 사실·수치·인명·금액·날짜는 추측해 작성하지 않고 [OOO]로 비워 둡니다. 단, 작성일자가 없을 때 오늘 날짜를 자동 기입하는 것은 예외입니다.</div></details><details><summary>어떤 자료를 기준으로 작성되나요?</summary><div class="ans">사내 표준인 "현대건설 대외 공문 작성 규칙"(문체·호칭·구조·용어)과 "공문양식"(문서번호·수신·경유·첨부·서명부 서식)을 참고자료로 두고, 이를 기준으로 일관된 초안을 생성합니다.</div></details></div></div></section>
+
+</div><footer class="site-footer"><div class="footer-container">본 문서는 AI 활용 실무 가이드입니다. 화면 구성과 기능은 조직 정책이나 프로그램 버전에 따라 조금씩 달라질 수 있습니다.</div></footer><div aria-label="이미지 확대 보기" aria-modal="true" class="lightbox-overlay" id="lightbox" role="dialog"><div class="lightbox-shell"><button class="lightbox-close" type="button" aria-label="닫기">×</button><img class="lightbox-image" alt="확대 이미지"/><div class="lightbox-caption"></div></div></div><script>
+var MEMOS={"m1": {"name": "회의록정리_참고메모.txt", "text": "# 회의록 정리 참고 메모\n회의록을 정리할 때 에이전트가 따르는 기준입니다.\n\n1. 구조\n- 머리말 : 회의명 / 일시 / 참석자\n- 본문   : 안건별 (논의 → 결정 → 보류)\n- 끝     : 액션 아이템 (담당자 · 기한)\n\n2. 표기 규칙\n- 결정사항과 단순 논의는 반드시 구분\n- 수치·날짜·담당자는 메모에 있는 것만 사용, 없으면 [OOO]\n- 일시 미기재 시 오늘 날짜 자동 기입\n\n3. 액션 아이템\n- \"누가 / 무엇을 / 언제까지\" 형식\n- 기한이 없으면 [기한 미정]으로 표시\n\n끝."}, "m2": {"name": "메일초안_참고메모.txt", "text": "# 업무 메일 초안 참고 메모\n\n1. 톤\n- 사내(상사·동료) : 간결·명확\n- 대외(고객·협력사) : 정중·격식\n\n2. 구조\n- 제목 → 인사 → 용건(배경) → 요청(+기한) → 맺음\n\n3. 원칙\n- 한 메일에 한 용건, 결론 먼저\n- 수신자·첨부·기한 확인 후 발송\n- 빈 값은 [OOO], 사실은 추측 금지\n\n끝."}, "m3": {"name": "보고서요약_참고메모.txt", "text": "# 보고서 요약 참고 메모\n\n1. 순서\n- 한 줄 요약 → 핵심 3~5개 → 시사점/제언\n\n2. 원칙\n- 원문 근거만 사용, 추측 금지\n- 수치·고유명사는 원문 그대로\n- 애매하면 [확인 필요] 표시\n\n3. 분량\n- 원문 대비 1/5 이내 권장\n\n끝."}, "m4": {"name": "점검체크리스트_참고메모.txt", "text": "# 점검 체크리스트 참고 메모\n\n1. 구분\n- 안전점검 / 품질점검\n\n2. 항목 형식\n- 확인 대상 + 판정 기준 (+근거)\n\n3. 원칙\n- 공종별 핵심 위험·하자를 우선\n- 수치 기준은 근거 있을 때만, 없으면 [OOO]\n- 관련 법규/기준(KDS, 산업안전보건법 등) 표기 권장\n\n끝."}};function downloadMemo(id){var m=MEMOS[id];if(!m)return;var blob=new Blob(["\ufeff"+m.text],{type:"text/plain;charset=utf-8"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download=m.name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url);},1500);}
+function handlePrint(){window.print();}
+function toggleExample(){var box=document.getElementById('exBox');var btn=document.getElementById('exBtn');if(box.style.display==='none'){box.style.display='block';btn.textContent='▲ 예제 공문 닫기';}else{box.style.display='none';btn.textContent='👁 예제 공문 보기';}}
+function fallbackCopy(text){var t=document.createElement('textarea');t.value=text;t.setAttribute('readonly','');t.style.position='fixed';t.style.top='-9999px';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(t);}
+document.querySelectorAll('.copy-btn').forEach(function(btn){if(!btn.dataset.copyTarget)return;btn.addEventListener('click',async function(){var target=document.getElementById(btn.dataset.copyTarget);if(!target)return;var text=target.innerText.trim();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{fallbackCopy(text);}}catch(e){fallbackCopy(text);}var o=btn.textContent;btn.textContent='복사됨';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done');},1300);});});
+(function(){var overlay=document.getElementById('lightbox');var image=overlay.querySelector('.lightbox-image');var caption=overlay.querySelector('.lightbox-caption');var close=overlay.querySelector('.lightbox-close');function hide(){overlay.classList.remove('open');image.removeAttribute('src');caption.textContent='';}close.addEventListener('click',hide);overlay.addEventListener('click',function(e){if(e.target===overlay)hide();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open'))hide();});})();
+</script></body></html>
