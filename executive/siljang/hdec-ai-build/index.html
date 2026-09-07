@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#112e28" />
+    <meta
+      name="description"
+      content="실장의 경험을 AI와 연결해 실제로 작동하는 업무 도구로 만드는 HDEC AI BUILD 교육 경험"
+    />
+    <title>HDEC AI BUILD</title>
+    <script type="module" crossorigin src="/executive/siljang/hdec-ai-build/assets/index-DMh8CEkY.js"></script>
+    <link rel="stylesheet" crossorigin href="/executive/siljang/hdec-ai-build/assets/index-Ckuyjrvi.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      ;(() => {
+        const route = new URLSearchParams(window.location.search).get('__spa')
+
+        if (!route || !route.startsWith('/') || route.startsWith('//')) return
+
+        const base = '/executive/siljang/hdec-ai-build/'.replace(/\/$/, '')
+        window.history.replaceState(null, '', `${base}${route}`)
+      })()
+    </script>
+  </body>
+</html>
